@@ -5,12 +5,9 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeTest;
-
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import static org.openqa.selenium.remote.CapabilityType.PLATFORM;
+import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
@@ -21,14 +18,20 @@ public class BaseTest {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        capabilities.setCapability("Nexus", "Nexus 6P");
-        capabilities.setCapability(PLATFORM, "Android");
+        capabilities.setCapability("deviceName", "ENU5T16126001466");
+        capabilities.setCapability(CapabilityType.BROWSER_NAME, "Android");
         capabilities.setCapability("platformVersion", "7.1.2");
+        capabilities.setCapability("platformName", "Android");
 
-        File file = new File("/home/tester/Downloads", "kidfunds_1.99-dev.apk");
-        capabilities.setCapability("app", file.getAbsolutePath());
+        /*File file = new File("/home/tester/Downloads", "kidfunds_1.99-dev.apk");
+        capabilities.setCapability("app", file.getAbsolutePath());*/
 
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        capabilities.setCapability("appPackage", "com.kidsfunds");
+        capabilities.setCapability("appActivity", "com.kidsfunds.MainActivity");
+
+        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
 
     }
 

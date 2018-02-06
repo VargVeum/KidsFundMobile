@@ -2,7 +2,6 @@ package android.mobile.tests.UserTests;
 
 import android.mobile.tests.BaseTest;
 import org.testng.annotations.Test;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.close;
 import static org.openqa.selenium.By.xpath;
