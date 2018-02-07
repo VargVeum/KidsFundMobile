@@ -1,15 +1,27 @@
 package android.mobile.tests;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selectors;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.remote.CapabilityType;
+import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.remote.MobilePlatform;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeTest;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import static com.codeborne.selenide.Selenide.$;
+import static org.openqa.selenium.By.xpath;
+
 public class BaseTest {
+
+    private final By loginButton = xpath("//android.view.ViewGroup[contains(@index,'1')]");
+    private final By fillYourEmailField = xpath("//android.widget.EditText[contains(@text,'Enter Your Email *')]");
+    private final By fillEnterYourPassword = xpath("//android.widget.EditText[contains(@text,'Enter Your Password *')]");
+    private final By loginToAccount = xpath("//android.view.ViewGroup[contains(@index,'6')]");
 
     AppiumDriver driver;
 
@@ -18,10 +30,9 @@ public class BaseTest {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        capabilities.setCapability("deviceName", "ENU5T16126001466");
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, "Android");
-        capabilities.setCapability("platformVersion", "7.1.2");
-        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "ENU5T16126001466");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1.2");
 
         /*File file = new File("/home/tester/Downloads", "kidfunds_1.99-dev.apk");
         capabilities.setCapability("app", file.getAbsolutePath());*/
@@ -31,6 +42,27 @@ public class BaseTest {
 
         driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
+    }
+
+    protected void loginViaEmail() {
+        $(loginButton).click();
+        $(fillYourEmailField).setValue("imartynenko@s-pro.io");
+        $(fillEnterYourPassword).setValue("Qwerty123$");
+        $(loginToAccount).click();
+    }
+
+    protected void loginViaMobile() {
+        $(xpath("//android.view.ViewGroup[contains(@index,'1')]")).click();
+        $(xpath("//android.view.ViewGroup[contains(@index,'3')]")).click();
+        //$(By.xpath("//android.widget.EditText[]")).shouldBe(Condition.visible);
+        $(xpath("//android.widget.EditText[contains(@text,'Enter Your Mobile Number *')]")).shouldBe(Condition.visible);
+        $(xpath("//android.view.ViewGroup[contains(@index,'12')]")).shouldHave(Condition.text("Ukraine"));
+        $(xpath("//android.view.ViewGroup[contains(@index,'7')]")).shouldHave(Condition.text("confirm")).click();
+        $(xpath("//android.widget.TextView[contains(@text,'+380')]")).shouldBe(Condition.visible);
+        $(xpath("//android.widget.EditText[contains(@text,'Enter Your Mobile Number *')]")).setValue("666274975");
+        $(fillEnterYourPassword).setValue("Qwerty123$");
+        $(xpath("//android.view.ViewGroup[contains(@index,'7')]")).click();
 
 
     }
