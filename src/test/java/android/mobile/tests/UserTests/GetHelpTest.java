@@ -6,18 +6,15 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static org.openqa.selenium.By.xpath;
 
 public class GetHelpTest extends BaseTest {
-    private final By needHelpButton = xpath("//android.widget.TextView[contains(@text,'Need Help?')]");
-    private final By emailField = xpath("//android.widget.EditText[contains(@text,'Your Email')]");
-    private final By subjectField = xpath("//android.widget.EditText[contains(@text,'Subject')]");
-    private final By messageField = xpath("//android.widget.EditText[contains(@text,'Write Your Message')]");
-    private final By submitButton = xpath("//android.view.ViewGroup[contains(@index,'3')]");
+    private final By needHelpButton = By.xpath("//android.widget.TextView[contains(@text,'Need Help?')]");
+    private final By emailField = By.xpath("//android.widget.EditText[contains(@text,'Your Email')]");
+    private final By subjectField = By.xpath("//android.widget.EditText[contains(@text,'Subject')]");
+    private final By messageField = By.xpath("//android.widget.EditText[contains(@text,'Write Your Message')]");
+    private final By submitButton = By.xpath("//android.view.ViewGroup[contains(@index,'3')]");
     private final By successMessage = byText("Your request has been sent. We will get back to you shortly.");
-    private final By okButton = xpath("//android.widget.Button[contains(@resource-id,'android:id/button1')]");
-
-    //$(xpath("//android.view.ViewGroup[contains(@index,'6')]")).click();
+    private final By okButton = By.xpath("//android.widget.Button[contains(@resource-id,'android:id/button1')]");
 
     @Test
     public void userLogin(){
