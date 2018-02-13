@@ -69,6 +69,10 @@ public class BaseTest {
 
     }
 
+    protected void hideKeyboard(){
+        driver.hideKeyboard();
+    }
+
 
 
 }
