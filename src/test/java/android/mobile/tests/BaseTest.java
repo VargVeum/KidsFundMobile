@@ -37,7 +37,7 @@ public class BaseTest {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1.2");
         capabilities.setCapability(CapabilityType.BROWSER_NAME, "Android");
 
-        /*File file = new File("./app", "kidfunds_1.99-dev.apk");
+        /*File file = new File("./app", "kidfunds_1.111-dev.apk");
         capabilities.setCapability("app", file.getAbsolutePath());*/
 
         capabilities.setCapability("appPackage", "com.kidsfunds");
