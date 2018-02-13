@@ -32,9 +32,9 @@ public class BaseTest {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "4100632ef2e7a17b");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "ENU5T16126001466");
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "6.0.1");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1.2");
         capabilities.setCapability(CapabilityType.BROWSER_NAME, "Android");
 
         /*File file = new File("./app", "kidfunds_1.99-dev.apk");
